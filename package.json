@@ -1,0 +1,17 @@
+{
+  "name": "red-black-interval-tree",
+  "version": "0.1.0",
+  "description": "Interval tree for finding all stored ranges that contain a given point",
+  "type": "module",
+  "main": "src/index.js",
+  "exports": "./src/index.js",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "dependencies": {}
+}
