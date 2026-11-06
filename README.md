@@ -36,3 +36,10 @@ The trade-off: intervals are keyed by `low`, so the tree is optimised for point 
 Intervals are **half-open**: `[low, high)`. A point equal to `high` is NOT contained. Two adjacent intervals `[0, 10)` and `[10, 20)` do not overlap — `pointQuery(10)` returns only the second. This avoids the ambiguity of whether a zero-width closed interval `[5, 5]` should "contain" 5 (we reject `low >= high` on insert, so that case never arises). Pick half-open once, stick with it everywhere.
 
 `insert` throws on `low >= high` or `NaN` rather than silently producing a node that can never match.
+
+## Design notes
+
+The window stores values eagerly rather than keeping running aggregates. Running
+sums drift with floating point over long streams, and recomputing from a small
+buffer is cheap enough that the drift is not worth the speed.
+
